@@ -1,2 +1,2 @@
-# SoftUni-Wordpress-Exam-Project
+# SoftUni-WordPress-Exam-Project
 My SoftUni Exam Project
