@@ -8,7 +8,7 @@
     <?php wp_head(); ?>
 
 	<!-- title -->
-	<title>Fruitkha</title>
+	<title><?php wp_title( '|', true, 'right' ); ?></title>
 
 	<!-- favicon -->
 	<link rel="shortcut icon" type="image/png" href="<?php echo FRUITKHA_ASSETS_URL; ?>/img/favicon.png">
@@ -18,14 +18,14 @@
 	<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
 
 </head>
-<body>
+<body <?php body_class(); ?>>
 	
 	<!-- header -->
 	<div class="top-header-area" id="sticker">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12 col-sm-12 text-center">
-					<div class="main-menu-wrap">
+					<div class="main-menu-wrap" id ="nav-bar">
 						<!-- logo -->
 						<div class="site-logo">
 							<a href="<?php echo home_url(); ?>">
@@ -36,10 +36,22 @@
 
 						<!-- menu start -->
 						<nav class="main-menu">
-							<ul>
-								<li><a href="index.php">Home</a></li>
-								<li><a href="news.php">News</a></li>
-								<li><a href="single-news.php">Single News</a></li>
+							<ul class="ul-nav-bar">
+								<li>
+									<?php
+										if ( has_nav_menu( 'header-menu' ) ) { 
+											wp_nav_menu( $args = array(
+												'menu'				=> "nav-bar", // (int|string|WP_Term) Desired menu. Accepts a menu ID, slug, name, or object.
+												'menu_class'		=> "ul-nav-bar", // (string) CSS class to use for the ul element which forms the menu. Default 'menu'.
+												'menu_id'			=> "nav-bar-id", // (string) The ID that is applied to the ul element which forms the menu. Default is the menu slug, incremented.
+												'container'			=> "ul", // (string) Whether to wrap the ul, and what to wrap it with. Default 'div'.
+												'container_class'	=> "main-menu-wrap", // (string) Class that is applied to the container. Default 'menu-{menu slug}-container'.
+												'container_id'		=> "nav-bar", // (string) The ID that is applied to the container.
+												'theme_location'	=> "header-menu", // (string) Theme location to be used. Must be registered with register_nav_menu() in order to be selectable by the user.
+											) ); 
+										}
+									?>
+								</li>
 								<li>
 									<div class="header-icons">
 										<a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search"></i></a>
@@ -47,8 +59,7 @@
 								</li>
 							</ul>
 						</nav>
-						<a class="mobile-show search-bar-icon" href="#"><i class="fas fa-search"></i></a>
-						<div class="mobile-menu"></div>
+
 						<!-- menu end -->
 					</div>
 				</div>

@@ -9,6 +9,8 @@ if ( ! defined( 'FRUITKHA_ASSETS_URL' ) ) {
     define( 'FRUITKHA_ASSETS_URL', get_template_directory_uri() . '/assets/' );
 }
 
+add_theme_support( 'title-tag' );
+
  /* Function that enqueue all of our assets
  *
  * @return void
@@ -56,3 +58,16 @@ function fruitkha_enqueue_assets() {
     wp_enqueue_script( 'main', FRUITKHA_ASSETS_URL . '/js/main.js"', array( 'jquery' ), FRUITKHA_ASSETS_VERSION, array() );
 }
 add_action( 'wp_enqueue_scripts', 'fruitkha_enqueue_assets' );
+
+ /* Register menus
+ *
+ * @return void
+ */
+function fruitkha_my_menus() {
+    register_nav_menus(
+      array(
+        'header-menu' => __( 'Header Menu' ),
+       )
+     );
+   }
+   add_action( 'init', 'fruitkha_my_menus' );
