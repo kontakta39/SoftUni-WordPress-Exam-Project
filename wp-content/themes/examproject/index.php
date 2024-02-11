@@ -24,7 +24,7 @@
 			<div class="row">
 				<div class="col-lg-8 offset-lg-2 text-center">
 					<div class="section-title">	
-						<h3><span class="orange-text">Our</span> News</h3>
+						<h3><span class="orange-text">Our</span> Latest Posts</h3>
 						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, fuga quas itaque eveniet beatae optio.</p>
 					</div>
 				</div>
@@ -83,55 +83,48 @@
 	</div>
 	<!-- end latest news -->
 
-	<!-- testimonail-section -->
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-10 offset-lg-1 text-center">
-					<div class="testimonial-sliders">
-						<div class="single-testimonial-slider">
-							<div class="client-avater">
-								<img src="<?php echo FRUITKHA_ASSETS_URL; ?>/img/avaters/avatar1.png" alt="">
-							</div>
-							<div class="client-meta">
-								<h3>Saira Hakim <span>Local shop owner</span></h3>
-								<p class="testimonial-body">
-									" Sed ut perspiciatis unde omnis iste natus error veritatis et  quasi architecto beatae vitae dict eaque ipsa quae ab illo inventore Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium "
-								</p>
-								<div class="last-icon">
-								</div>
-							</div>
-						</div>
-						<div class="single-testimonial-slider">
-							<div class="client-avater">
-								<img src="<?php echo FRUITKHA_ASSETS_URL; ?>/img/avaters/avatar2.png" alt="">
-							</div>
-							<div class="client-meta">
-								<h3>David Niph <span>Local shop owner</span></h3>
-								<p class="testimonial-body">
-									" Sed ut perspiciatis unde omnis iste natus error veritatis et  quasi architecto beatae vitae dict eaque ipsa quae ab illo inventore Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium "
-								</p>
-								<div class="last-icon">
-								</div>
-							</div>
-						</div>
-						<div class="single-testimonial-slider">
-							<div class="client-avater">
-								<img src="<?php echo FRUITKHA_ASSETS_URL; ?>/img/avaters/avatar3.png" alt="">
-							</div>
-							<div class="client-meta">
-								<h3>Jacob Sikim <span>Local shop owner</span></h3>
-								<p class="testimonial-body">
-									" Sed ut perspiciatis unde omnis iste natus error veritatis et  quasi architecto beatae vitae dict eaque ipsa quae ab illo inventore Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium "
-								</p>
-								<div class="last-icon">
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	<!-- end testimonail-section -->
+<?php
+// Retrieve all users except administrators
+$users = get_users(array('role__not_in' => array('administrator')));
+
+// Check if there are users
+if (count($users) > 0) {
+    echo "<div class='testimonial-section'>";
+    echo "<div class='container'>";
+    echo "<div class='row'>";
+    echo "<div class='col-lg-10 offset-lg-1 text-center'>";
+    echo "<div class='testimonial-sliders'>";
+    
+    // Display each user's information
+    foreach ($users as $user) {
+        // Get user roles
+        $user_roles = $user->roles;
+        
+        echo "<div class='single-testimonial-slider'>";
+        echo "<div class='client-avater'>";
+        echo get_avatar($user->ID, 96); // Adjust the size as needed
+        echo "</div>";
+        echo "<div class='client-meta'>";
+        echo "<h3>" . $user->display_name . "</h3>";
+        echo "<span>" . implode(", ", $user_roles) . "</span>";
+        echo "<p class='testimonial-body'>";
+        echo "\"Sed ut perspiciatis unde omnis iste natus error veritatis et  quasi architecto beatae vitae dict eaque ipsa quae ab illo inventore Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium\"";
+        echo "</p>";
+        echo "<div class='last-icon'>";
+        echo "</div>";
+        echo "</div>";
+        echo "</div>";
+    }
+    
+    echo "</div>";
+    echo "</div>";
+    echo "</div>";
+    echo "</div>";
+    echo "</div>";
+} else {
+    echo "No users found.";
+}
+?>
 
 	<!-- logo carousel -->
 	<div class="logo-carousel-section">
@@ -140,19 +133,19 @@
 				<div class="col-lg-12">
 					<div class="logo-carousel-inner">
 						<div class="single-logo-item">
-							<img src="assets/img/company-logos/1.png" alt="">
+							<img src="<?php echo FRUITKHA_ASSETS_URL; ?>/img/company-logos/1.png" alt="">
 						</div>
 						<div class="single-logo-item">
-							<img src="assets/img/company-logos/2.png" alt="">
+							<img src="<?php echo FRUITKHA_ASSETS_URL; ?>/img/company-logos/2.png" alt="">
 						</div>
 						<div class="single-logo-item">
-							<img src="assets/img/company-logos/3.png" alt="">
+							<img src="<?php echo FRUITKHA_ASSETS_URL; ?>/img/company-logos/3.png" alt="">
 						</div>
 						<div class="single-logo-item">
-							<img src="assets/img/company-logos/4.png" alt="">
+							<img src="<?php echo FRUITKHA_ASSETS_URL; ?>/img/company-logos/4.png" alt="">
 						</div>
 						<div class="single-logo-item">
-							<img src="assets/img/company-logos/5.png" alt="">
+							<img src="<?php echo FRUITKHA_ASSETS_URL; ?>/img/company-logos/5.png" alt="">
 						</div>
 					</div>
 				</div>

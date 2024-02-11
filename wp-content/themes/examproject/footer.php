@@ -22,9 +22,8 @@
 					<div class="footer-box pages">
 						<h2 class="widget-title">Pages</h2>
 						<ul>
-							<li><a href="http://localhost/softuni/wp-content/themes/examproject/index.php">Home</a></li>
-							<li><a href="http://localhost/softuni/wp-content/themes/examproject/news.php">News</a></li>
-							<li><a href="http://localhost/softuni/wp-content/themes/examproject/single-news.php">Single News</a></li>
+							<li><a href="<?php echo home_url(); ?>">Home</a></li>
+							<li><a href="http://localhost/softuni/sample-page/">Sample Page</a></li>
 						</ul>
 					</div>
 				</div>
@@ -48,7 +47,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-6 col-md-12">
-					<p>Copyright &copy; <script>document.write( new Date().getFullYear() );</script> - <a href="https://imransdesign.com/">Imran Hossain</a>,  All Rights Reserved.<br>
+					<p>Copyright &copy; <script>document.write( new Date().getFullYear() );</script> - <a href="https://imransdesign.com/">Imran Hossain</a>.  All Rights Reserved.<br>
 					</p>
 				</div>
 			</div>

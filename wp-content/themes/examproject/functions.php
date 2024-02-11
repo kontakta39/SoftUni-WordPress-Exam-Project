@@ -10,6 +10,7 @@ if ( ! defined( 'FRUITKHA_ASSETS_URL' ) ) {
 }
 
 add_theme_support( 'title-tag' );
+add_theme_support( 'post-thumbnails' );
 
  /* Function that enqueue all of our assets
  *
@@ -71,3 +72,38 @@ function fruitkha_my_menus() {
      );
    }
    add_action( 'init', 'fruitkha_my_menus' );
+
+// Hook to redirect from the archive page to current post
+add_action( 'template_redirect', 'redirect_to_single_post' );
+function redirect_to_single_post() {
+    // Check if we're on an archive page
+    if ( is_archive() ) {
+        // Get the queried object
+        $queried_object = get_queried_object();
+        
+        // Check if the queried object is a post object
+        if ( $queried_object instanceof WP_Post ) {
+            // Get the current post object
+            $post = $queried_object;
+            
+            // Get the permalink of the current post
+            $permalink = get_permalink( $post );
+            
+            // Redirect to the current post permalink
+            wp_redirect( $permalink, 301 );
+            exit;
+        }
+    }
+}   
+
+//Display the first sentence of a post in the archive page
+function get_first_sentence_of_post($post_id = null) {
+    if (!$post_id) {
+        global $post;
+        $post_id = $post->ID;
+    }
+    $content = get_post_field('post_content', $post_id);
+    $first_sentence = strtok($content, '.');
+    $first_sentence_with_dot = wp_strip_all_tags($first_sentence) . '.';
+    return $first_sentence_with_dot;
+}

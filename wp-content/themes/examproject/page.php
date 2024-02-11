@@ -10,7 +10,7 @@
 				<div class="col-lg-8 offset-lg-2 text-center">
 					<div class="breadcrumb-text">
 						<p>Read the Details</p>
-						<h1>Single Article</h1>
+						<h1>Sample Page</h1>
 					</div>
 				</div>
 			</div>
@@ -46,8 +46,9 @@
 								</span>
 								<span class="date"><i class="fas fa-calendar"></i> 
 									<?php
-									$current_date = date_i18n( 'j F Y' ); // Retrieves the current date in the format Month Day, Year
-									echo $current_date;
+										$page_id = get_the_ID(); // Get the current page ID
+										$page_date = get_the_date('j F Y', $page_id);
+										echo $page_date;
 									?>
 								</span>
 							</p></br>
@@ -71,11 +72,16 @@
 						<div class="archive-posts">
 							<h4>Archive Posts</h4>
 							<ul>
-								<li><a href="single-news.html">JAN 2019</a></li>
-								<li><a href="single-news.html">FEB 2019</a></li>
-								<li><a href="single-news.html">MAY 2019</a></li>
-								<li><a href="single-news.html">SEP 2019</a></li>
-								<li><a href="single-news.html">DEC 2019</a></li>
+								<li>
+								<?php
+									$args = array(
+										'type' => 'yearly',
+										'format' => 'html',
+										'show_post_count' => true, // Set to false if you don't want to display post count
+									);
+									wp_get_archives($args);
+									?>
+								</li>
 							</ul>
 						</div>
 					</div>
