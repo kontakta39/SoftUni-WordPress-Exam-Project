@@ -1,12 +1,10 @@
 <?php get_header(); ?>
 
 <?php
-$current_year = date('Y');
 $fruitkha_archive_args = array(
     'post_type'      => 'post',
     'post_status'    => 'publish',
-    'posts_per_page' => 12,
-    'year'           => $current_year, // Filter posts by the current year
+    'posts_per_page' => 9,
     'paged' 		 => get_query_var('paged')
 );
 
@@ -39,19 +37,13 @@ $fruitkha_archive_query = new WP_Query ( $fruitkha_archive_args );
 				<div class="col-lg-8 offset-lg-2 text-center">
 					<div class="breadcrumb-text">
 						<p>
-							<?php
-								// Get the archive title
-								$archive_title = get_the_archive_title();
-
-								// Extract the year from the title
-								preg_match('/\d{4}/', $archive_title, $matches);
-								$archive_year = $matches[0];
-
-								// Output the year
-								echo $archive_year;
-							?>
+						<?php
+							$post_author_id = get_the_author_meta('ID'); // Get the author's ID
+							$author_name = get_the_author_meta('display_name', $post_author_id); // Get the author's display name
+							echo $author_name; // Display the author's name
+						?>
 						</p>
-						<h1>Archive</h1>
+						<h1>Posts</h1>
 					</div>
 				</div>
 			</div>
@@ -122,7 +114,9 @@ $fruitkha_archive_query = new WP_Query ( $fruitkha_archive_args );
 							<div class="pagination-wrap">
 								<ul>
 									<li><?php previous_posts_link( 'Previous' ); ?></li>
-									<li><?php next_posts_link( 'Next' ); ?></li>
+									<?php if ( get_next_posts_link() ) : ?>
+										<li><?php next_posts_link( 'Next' ); ?></li>
+									<?php endif; ?>
 								</ul>
 							</div>
 						</div>
