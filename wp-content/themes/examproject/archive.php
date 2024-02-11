@@ -1,13 +1,13 @@
 <?php get_header(); ?>
 
 <?php
-$current_year = date('Y');
+$current_year = get_the_date('Y');
 $fruitkha_archive_args = array(
     'post_type'      => 'post',
     'post_status'    => 'publish',
     'posts_per_page' => 12,
     'year'           => $current_year, // Filter posts by the current year
-    'paged' 		 => get_query_var('paged')
+	'paged' 		 => get_query_var('paged')
 );
 
 $fruitkha_archive_query = new WP_Query ( $fruitkha_archive_args );

@@ -25,7 +25,11 @@
 				<div class="col-lg-8">
 					<div class="single-article-section">
 						<div class="single-article-text">
-							<div class="single-artcile-bg"></div>
+						<?php
+							// Get the post thumbnail URL
+							$thumbnail_url = get_the_post_thumbnail_url(get_the_ID(), 'full');
+						?>
+							<div class="single-artcile-bg" style="background-image: url('<?php echo esc_url($thumbnail_url); ?>'); height: 450px;"></div>
 							<p class="blog-meta">
 								<span class="author"><i class="fas fa-user"></i>
 										<?php
@@ -61,11 +65,16 @@
 						<div class="recent-posts">
 							<h4>Recent Posts</h4>
 							<ul>
-								<li><a href="single-news.html">You will vainly look for fruit on it in autumn.</a></li>
-								<li><a href="single-news.html">A man's worth has its season, like tomato.</a></li>
-								<li><a href="single-news.html">Good thoughts bear good fresh juicy fruit.</a></li>
-								<li><a href="single-news.html">Fall in love with the fresh orange</a></li>
-								<li><a href="single-news.html">Why the berries always look delecious</a></li>
+								<?php
+								$recent_posts = wp_get_recent_posts(array(
+									'numberposts' => 5, // Number of posts to display
+									'orderby' => 'post_date', // Order by date
+									'order' => 'DESC', // Show latest posts first
+								));
+
+								foreach ($recent_posts as $post) : ?>
+									<li><a href="<?php echo get_permalink($post['ID']); ?>"><?php echo $post['post_title']; ?></a></li>
+								<?php endforeach; ?>
 							</ul>
 						</div>
 						<div class="archive-posts">
