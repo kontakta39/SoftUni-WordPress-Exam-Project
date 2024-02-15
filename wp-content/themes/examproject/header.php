@@ -54,7 +54,7 @@
 								</li>
 								<li>
 									<div class="header-icons">
-										<a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search"></i></a>
+										<a class="mobile-hide search-bar-icon" href="#"></a>
 									</div>
 								</li>
 							</ul>

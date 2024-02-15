@@ -76,4 +76,71 @@ if ( ! class_exists( 'Fruits_Cpt' ) ) :
 $fruits_cpt = new Fruits_Cpt;
 flush_rewrite_rules();
 
+// Add the metabox
+function add_fruit_category_metabox() {
+    add_meta_box(
+        'fruit_category_metabox',
+        'Fruit Category',
+        'render_fruit_category_metabox',
+        'fruit', // Post type where the metabox will be displayed
+        'side', // Context: 'normal', 'advanced', or 'side'
+        'default' // Priority: 'high', 'core', 'default', or 'low'
+    );
+}
+add_action('add_meta_boxes', 'add_fruit_category_metabox');
+
+// Render the metabox content
+function render_fruit_category_metabox($fruit) {
+    $fruit_categories = array(
+        'Strawberry',
+        'Grape',
+        'Kiwi',
+        'Apple',
+        'Raspberry'
+    );
+
+    $selected_category = get_post_meta($fruit->ID, 'fruit_category', true);
+
+    // Output checkboxes for each fruit category
+    foreach ($fruit_categories as $category) {
+        $checked = ($category === $selected_category) ? 'checked' : '';
+        echo "<label><input type='checkbox' name='fruit_category[]' value='$category' $checked class='fruit-checkbox'> $category</label><br>";
+    }
+
+    // Add JavaScript to ensure only one checkbox can be checked
+    ?>
+    <script type="text/javascript">
+        var checkboxes = document.querySelectorAll('.fruit-checkbox');
+        checkboxes.forEach(function(checkbox) {
+            checkbox.addEventListener('change', function() {
+                checkboxes.forEach(function(cb) {
+                    if (cb !== checkbox) {
+                        cb.checked = false;
+                    }
+                });
+            });
+        });
+    </script>
+    <?php
+}
+
+// Save the metabox data
+function save_fruit_category_metabox($fruit_id) {
+    if (isset($_POST['fruit_category'])) {
+        $selected_categories = $_POST['fruit_category'];
+        if (count($selected_categories) > 1) {
+            // If more than one category is selected, only keep the last one selected
+            $selected_category = end($selected_categories);
+        } else {
+            // If only one category is selected, use that category
+            $selected_category = reset($selected_categories);
+        }
+        update_post_meta($fruit_id, 'fruit_category', $selected_category);
+    } else {
+        // If no category is selected, delete the meta
+        delete_post_meta($fruit_id, 'fruit_category');
+    }
+}
+add_action('save_post', 'save_fruit_category_metabox');
+
 endif;
