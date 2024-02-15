@@ -23,6 +23,10 @@ if ( ! defined( 'FRUITKHA_PLUGIN_INCLUDES_DIR' ) ) {
     define( 'FRUITKHA_PLUGIN_INCLUDES_DIR', plugin_dir_path( __FILE__ ) . 'includes' );
 }
 
+if ( ! defined( 'FRUITKHA_PLUGIN_ASSETS_DIR' ) ) {
+    define( 'FRUITKHA_PLUGIN_ASSETS_DIR', plugins_url( 'assets', __FILE__ ) );
+}
+
 // load our important files
 require FRUITKHA_PLUGIN_INCLUDES_DIR . '/functions.php' ;
 require FRUITKHA_PLUGIN_INCLUDES_DIR . '/class-fruitkha.php' ;

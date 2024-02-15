@@ -74,6 +74,6 @@ if ( ! class_exists( 'Fruits_Cpt' ) ) :
    }
 
 $fruits_cpt = new Fruits_Cpt;
+flush_rewrite_rules();
 
 endif;
-

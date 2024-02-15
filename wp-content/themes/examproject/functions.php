@@ -57,6 +57,8 @@ function fruitkha_enqueue_assets() {
     wp_enqueue_script( 'sticker', FRUITKHA_ASSETS_URL . '/js/sticker.js"', array( 'jquery' ), FRUITKHA_ASSETS_VERSION, array() );
 	//<!-- main js -->
     wp_enqueue_script( 'main', FRUITKHA_ASSETS_URL . '/js/main.js"', array( 'jquery' ), FRUITKHA_ASSETS_VERSION, array() );
+
+    //wp_enqueue_script( 'custom', FRUITKHA_ASSETS_URL . '/js/custom.js"', array( 'jquery' ), FRUITKHA_ASSETS_VERSION, array() );
 }
 add_action( 'wp_enqueue_scripts', 'fruitkha_enqueue_assets' );
 
