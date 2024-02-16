@@ -76,7 +76,7 @@ if ( ! class_exists( 'Fruits_Cpt' ) ) :
 $fruits_cpt = new Fruits_Cpt;
 flush_rewrite_rules();
 
-// Add the metabox
+// Add fruit category metabox
 function add_fruit_category_metabox() {
     add_meta_box(
         'fruit_category_metabox',
