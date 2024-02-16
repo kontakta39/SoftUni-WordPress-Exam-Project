@@ -24,8 +24,12 @@
 			<div class="row">
 				<div class="col-lg-8">
 					<div class="single-article-section">
-						<div class="single-article-text">
-							<div class="single-artcile-bg"></div>
+					<div class="single-article-text">
+						<?php
+							// Get the post thumbnail URL
+							$thumbnail_url = get_the_post_thumbnail_url(get_the_ID(), 'full');
+						?>
+							<div class="single-artcile-bg" style="background-image: url('<?php echo esc_url($thumbnail_url); ?>'); height: 450px;"></div>
 							<p class="blog-meta">
 								<span class="author"><i class="fas fa-user"></i>
 										<?php

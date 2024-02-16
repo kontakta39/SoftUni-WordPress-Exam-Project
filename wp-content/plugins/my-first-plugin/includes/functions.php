@@ -108,3 +108,24 @@ function codex_load_more_post_ajax_call_back(){
 
 add_action( 'wp_ajax_nopriv_codex_load_more_post_ajax', 'codex_load_more_post_ajax_call_back' );
 add_action( 'wp_ajax_codex_load_more_post_ajax', 'codex_load_more_post_ajax_call_back' );
+
+/**
+ * Add the top level menu page.
+ */
+function fruits_options_page() {
+	add_menu_page(
+		'Fruits Options',
+		'Fruits Options',
+		'manage_options',
+		'fruits-options',
+		'fruits_options_page_html'
+	);
+}
+/**
+ * Register our softuni_options_page to the admin_menu action hook.
+ */
+add_action( 'admin_menu', 'fruits_options_page' );
+
+function fruits_options_page_html() {
+    include FRUITKHA_PLUGIN_INCLUDES_DIR . '/options-page.php';
+}

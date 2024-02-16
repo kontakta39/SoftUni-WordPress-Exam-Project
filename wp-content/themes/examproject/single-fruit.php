@@ -64,11 +64,12 @@
 				<div class="col-lg-4">
 					<div class="sidebar-section">
 						<div class="recent-posts">
-							<h4>Recent Posts</h4>
+							<h4>Recent Fruits</h4>
 							<ul>
-								<?php
+							<?php
 								$recent_posts = wp_get_recent_posts(array(
 									'numberposts' => 5, // Number of posts to display
+									'post_type' => 'fruit', // Custom post type 'fruit'
 									'orderby' => 'post_date', // Order by date
 									'order' => 'DESC', // Show latest posts first
 								));

@@ -3,7 +3,7 @@
 <?php
 $year = get_the_date('Y');
 $fruitkha_archive_args = array(
-    'post_type'      => 'post',
+    'post_type'      => 'fruit',
     'post_status'    => 'publish',
     'posts_per_page' => 12,
     'year'           => $year, // Filter posts by the current year
